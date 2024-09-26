@@ -4,3 +4,65 @@
 	box-sizing: border-box;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+body {
+	background-color: rgb(83, 83, 83);
+}
+
+.category-selection {
+	width: 500px;
+	/* border: 1px solid; */
+	border-radius: 16px;
+	padding: 40px 20px;
+	margin: auto;
+	margin-top: 100px;
+	height: 285px;
+	background-color: #e4e4e4;
+	display: block;
+}
+
+.difficulty-selection {
+	width: 500px;
+	/* border: 1px solid; */
+	border-radius: 16px;
+	padding: 40px 20px;
+	margin: auto;
+	margin-top: 100px;
+	height: 285px;
+	background-color: #e4e4e4;
+	display: none;
+}
+
+.category-header,
+.difficulty-header {
+	text-align: center;
+	margin-bottom: 24px;
+	font-size: 40px;
+}
+
+.category-description,
+.difficulty-description {
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-bottom: 40px;
+}
+
+.category-choices,
+.difficulty-choices {
+	display: flex;
+	justify-content: space-around;
+}
+
+.category-choice,
+.difficulty-choice {
+	padding: 10px 25px;
+	font-size: 20px;
+	cursor: pointer;
+	border: none;
+	background-color: rgb(211, 99, 117);
+	color: rgb(255, 255, 255);
+	border-radius: 8px;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
