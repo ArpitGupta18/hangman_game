@@ -16,7 +16,7 @@ export function generateWord(
 		hiddenWordArr
 	);
 
-	console.log(selectedWordUpd);
+	// console.log(selectedWordUpd);
 
 	return [selectedWordUpd, selectedWordArrUpd, hiddenWordArrUpd];
 }

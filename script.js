@@ -29,6 +29,7 @@ let hiddenWordArr = [];
 let correctGuessesArr = [];
 let wrongGuessesArr = [];
 let remainingLife = 6;
+let keyboardDisabled = false;
 const context = canvas.getContext("2d");
 
 // * Adding event listeners for category and difficulty choice
@@ -83,18 +84,30 @@ function displayBoard() {
 	document.addEventListener("keydown", handleGuess);
 
 	if (remainingLife <= 0) {
+		document.removeEventListener("keydown", handleGuess);
 		setTimeout(() => {
 			correctAnswer.innerHTML = selectedWord;
 			gamePassed.style.display = "none";
 			gameFailed.style.display = "block";
+
+			setTimeout(() => {
+				gameFailed.style.display = "none";
+				window.location.reload();
+			}, 5000);
 		}, 100);
 		return;
 	}
 	if (!hiddenWord.includes("_") && remainingLife > 0) {
+		document.removeEventListener("keydown", handleGuess);
 		setTimeout(() => {
 			correctGuess.innerHTML = selectedWord;
 			gameFailed.style.display = "none";
 			gamePassed.style.display = "block";
+
+			setTimeout(() => {
+				gamePassed.style.display = "none";
+				window.location.reload();
+			}, 5000);
 		}, 100);
 	}
 }
@@ -143,4 +156,20 @@ function handleGuess(event) {
 	)}`;
 	wrongGuesses.innerHTML = `Wrong Guesses: ${wrongGuessesArr.join(", ")}`;
 	displayBoard();
+}
+
+function disableKeyboard() {
+	keyboardDisabled = true;
+	document.addEventListener("keydown", preventTyping, true);
+
+	setTimeout(() => {
+		keyboardDisabled = false;
+		document.removeEventListener("keydown", preventTyping, true);
+	}, 5000);
+}
+
+function preventTyping(event) {
+	if (keyboardDisabled) {
+		event.preventDefault();
+	}
 }
