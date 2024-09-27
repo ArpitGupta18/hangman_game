@@ -9,12 +9,30 @@
 	<body>
 		<div class="game-board">
 			<h2>Hangman Game</h2>
-			<div id="wrongGuesses"></div>
-			<div id="wordDisplay"></div>
-			<div id="hangmanDrawing"></div>
-			<div id="restartBtn">Restart Game</div>
+			<div id="wrongGuesses">Wrong Guesses:</div>
+			<div id="correctGuesses">Correct Guesses:</div>
+			<div id="theme">Theme:</div>
+			<div class="game">
+				<canvas id="hangmanCanvas" width="200" height="400"></canvas>
+				<div id="wordDisplay">_ _ _ _ &nbsp;&nbsp;&nbsp; _ _</div>
+			</div>
+			<button id="restartBtn">Restart Game</button>
 		</div>
 
+		<div class="gameFailed">
+			<div>
+				Correct Answer:
+				<span id="correctAnswer"></span>
+			</div>
+		</div>
+		<div class="gamePassed">
+			<div>
+				Congratulations. You've guessed it!! <br />
+				Your answer:
+				<span id="correctGuess"></span>
+			</div>
+		</div>
+		<div id="alreadyGuessedValue"></div>
 		<div class="category-selection">
 			<h1 class="category-header">Choose a category</h1>
 			<p class="category-description">

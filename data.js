@@ -74,7 +74,7 @@ export const data = {
 			"Harry Potter and the Prisoner of Azkaban",
 			"Indiana Jones and the Last Crusade",
 			"Guardians of the Galaxy",
-			"The Good, the Bad and the Ugly",
+			"The Good the Bad and the Ugly",
 		],
 	},
 	countries: {
