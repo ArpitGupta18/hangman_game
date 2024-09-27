@@ -122,6 +122,8 @@ const categorySelection = document.querySelector(".category-selection");
 const difficultySelection = document.querySelector(".difficulty-selection");
 const categoryChoice = document.querySelectorAll(".category-choice");
 const difficultyChoice = document.querySelectorAll(".difficulty-choice");
+const wordDisplay = document.getElementById("wordDisplay");
+const wrongGuesses = document.getElementById("wrongGuesses");
 
 // * Declaration of variables
 let categoryName;
@@ -130,6 +132,7 @@ let category = "";
 let selectedWord = "";
 let selectedWordArr = [];
 let hiddenWordArr = [];
+let wrongGuessesArr = [];
 
 // * Adding event listeners for category and difficulty choice
 categoryChoice.forEach((category) => {
@@ -156,11 +159,10 @@ function handleDifficultyClick() {
 	difficultySelection.style.display = "none";
 	document.body.style.backgroundColor = "white";
 
-	displayBoard();
+	generateWord();
 }
 
-// * Game Board (yet to add difficulty feature)
-function displayBoard() {
+function generateWord() {
 	switch (category) {
 		case "animals":
 			selectedWord =
@@ -201,10 +203,47 @@ function displayBoard() {
 		default:
 			console.log("Error");
 	}
+	console.log(selectedWord);
 
-	console.log(selectedWordArr);
-	console.log(hiddenWordArr);
+	displayBoard();
+}
+
+function handleGuess(event) {
+	const letter = event.key.toLowerCase();
+	let indices = [];
+
+	if (!/^[a-z]$/.test(letter)) return;
+
+	for (let i = 0; i < selectedWordArr.length; i++) {
+		indices = [];
+		selectedWordArr[i].forEach((element, index) => {
+			if (element === letter) {
+				indices.push(index);
+			}
+		});
+
+		// console.log(indices);
+		if (indices.length !== 0) {
+			for (let indexVal of indices) {
+				hiddenWordArr[i][indexVal] = letter;
+			}
+		}
+		// console.log(hiddenWordArr);
+		displayBoard();
+	}
+}
+// * Game Board (yet to add difficulty feature)
+function displayBoard() {
+	// console.log(selectedWordArr);
+	// console.log(hiddenWordArr);
+	console.log(wrongGuessesArr);
+
 	// * Displaying board in web page
-	// const wordDisplay = document.getElementById("wordDisplay");
-	// wordDisplay.innerHTML = hiddenWordArr.join(" ");
+	let hiddenWord = "";
+	for (let words in hiddenWordArr) {
+		hiddenWord += hiddenWordArr[words].join(" ") + "&nbsp;&nbsp;&nbsp;";
+	}
+	wordDisplay.innerHTML = hiddenWord;
+
+	document.addEventListener("keydown", handleGuess);
 }
