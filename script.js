@@ -29,7 +29,6 @@ let hiddenWordArr = [];
 let correctGuessesArr = [];
 let wrongGuessesArr = [];
 let remainingLife = 6;
-let keyboardDisabled = false;
 const context = canvas.getContext("2d");
 
 // * Adding event listeners for category and difficulty choice
@@ -125,6 +124,7 @@ function handleGuess(event) {
 		wrongGuessesArr.includes(letter)
 	) {
 		alreadyGuessedValue.innerHTML = `'${letter}' already guessed`;
+
 		alreadyGuessedValue.style.display = "block";
 		setTimeout(() => {
 			alreadyGuessedValue.style.display = "none";
@@ -156,20 +156,4 @@ function handleGuess(event) {
 	)}`;
 	wrongGuesses.innerHTML = `Wrong Guesses: ${wrongGuessesArr.join(", ")}`;
 	displayBoard();
-}
-
-function disableKeyboard() {
-	keyboardDisabled = true;
-	document.addEventListener("keydown", preventTyping, true);
-
-	setTimeout(() => {
-		keyboardDisabled = false;
-		document.removeEventListener("keydown", preventTyping, true);
-	}, 5000);
-}
-
-function preventTyping(event) {
-	if (keyboardDisabled) {
-		event.preventDefault();
-	}
 }
